@@ -1,31 +1,40 @@
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	int			sign;
-	long int	number;
+    int         sign;
+    long int    number;
 
-	sign = 1;
-	number = 0;
-	if (*str == '-')
-	{
-		sign *= -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		number = *str - '0' + (number * 10);
-		str++;
-	}
-	number *= sign;
-	if (number > 2147483647 || number < -2147483648)
-	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
-	return (number);
+    sign = 1;
+    number = 0;
+    if (*str == '-')
+    {
+        sign *= -1;
+        str++;
+        if (*str < '0' || *str > '9')
+        {
+            write(1, "Error\n", 6);
+            exit(1);
+        }
+    }
+    while (*str >= '0' && *str <= '9')
+    {
+        number = *str - '0' + (number * 10);
+        str++;
+    }
+    if (*str != '\0' && *str != ' ' && *str != '\t')
+    {
+        write(1, "Error\n", 6);
+        exit(1);
+    }
+    number *= sign;
+    if (number > 2147483647 || number < -2147483648)
+    {
+        write(2, "Error\n", 6);
+        exit(1);
+    }
+    return (number);
 }
-
 void	ft_split(char **argv, t_data *stack_a, int i)
 {
 	int		j;
