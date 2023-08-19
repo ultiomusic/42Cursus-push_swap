@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
-SRC = main.c rotate.c reverse_rotate.c swap.c push.c utils.c sort_small.c
+SRC = main.c rotate.c reverse_rotate.c swap.c push.c push_swap_utils.c sort_small.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

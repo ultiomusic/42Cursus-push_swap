@@ -91,7 +91,7 @@ void	sort(t_data *stack_a, t_data *stack_b)
 			if (!((current >> i) & 1))
 				pb(stack_a, stack_b);
 			else
-				ra(stack_a);
+				rra(stack_a);
 		}
 		num--;
 		i++;

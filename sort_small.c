@@ -5,9 +5,9 @@ void	sort_three_list(t_data *a)
 	if (!(a->nums[0] > a->nums[1] && a->nums[0] > a->nums[2]))
 	{
 		if (a->nums[1] > a->nums[2])
-			rra(a);
-		else
 			ra(a);
+		else
+			rra(a);
 	}
 	if (a->nums[2] > a->nums[1])
 		sa(a);
@@ -18,14 +18,14 @@ void	sort_four_list(t_data *stack_a, t_data *stack_b)
 	if (stack_a->nums[3] != 0)
 	{
 		if (stack_a->nums[2] == 0)
-			ra(stack_a);
+			rra(stack_a);
 		else if (stack_a->nums[1] == 0)
 		{
-			rra(stack_a);
-			rra(stack_a);
+			ra(stack_a);
+			ra(stack_a);
 		}
 		else
-			rra(stack_a);
+			ra(stack_a);
 	}
 	pb(stack_a, stack_b);
 	sort_three_list(stack_a);
@@ -45,7 +45,7 @@ void	sort_five_list(t_data *stack_a, t_data *stack_b)
 			i--;
 		}
 		else
-			ra(stack_a);
+			rra(stack_a);
 	}
 	if (stack_b->nums[0] > stack_b->nums[1])
 		sb(stack_b);
