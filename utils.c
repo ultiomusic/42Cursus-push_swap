@@ -64,32 +64,38 @@ void	ft_split(char **argv, t_data *stack_a, int i)
 		stack_a->nums[i] = ft_atoi(numbers[i]);
 }
 
-int	number_count(int ac, char **a)
+int number_count(int ac, char **a)
 {
-	int	i;
-	int	j;
-	int	count;
+    int i;
+    int j;
+    int count;
 
-	i = 0;
-	count = 0;
-	while (++i < ac)
-	{
-		j = 0;
-		while (a[i][j] != '\0')
-		{
-			if (a[i][j] != ' ' && (a[i][j + 1] == ' ' || a[i][j + 1] == '\0'))
-				count++;
-			if (a[i][j] == '-')
-				j++;
-			else if (a[i][j] < '0' && a[i][j] != ' ' && a[i][j] != '\t')
-				return (-1);
-			else if (a[i][j] > '9')
-				return (-1);
-			else
-				j++;
-		}
-	}
-	return (count);
+    i = 0;
+    count = 0;
+    while (++i < ac)
+    {
+        j = 0;
+        while (a[i][j] != '\0')
+        {
+            if (a[i][j] != ' ' && (a[i][j + 1] == ' ' || a[i][j + 1] == '\0'))
+                count++;
+            if (a[i][j] == '-' && (a[i][j + 1] >= '0' && a[i][j + 1] <= '9'))
+                j++;
+            else if (a[i][j] == '-')
+                return (-1);
+            else if ((a[i][j] == ' ' || a[i][j] == '\t') && (a[i][j + 1] >= '0' && a[i][j + 1] <= '9'))
+                j++;
+            else if (a[i][j] == ' ' || a[i][j] == '\t')
+                return (-1);
+            else if (a[i][j] < '0' && a[i][j] != ' ' && a[i][j] != '\t')
+                return (-1);
+            else if (a[i][j] > '9')
+                return (-1);
+            else
+                j++;
+        }
+    }
+    return (count);
 }
 
 void	fill_stack(int ac, char **av, t_data *stack_a, t_data *stack_b)
