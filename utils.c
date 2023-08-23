@@ -6,7 +6,7 @@
 /*   By: beeligul <beeligul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:04:04 by beeligul          #+#    #+#             */
-/*   Updated: 2023/08/23 21:06:31 by beeligul         ###   ########.fr       */
+/*   Updated: 2023/08/23 22:23:01 by beeligul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	ft_atoi(const char *str)
 	{
 		sign *= -1;
 		str++;
+		if (*str < '0' || *str > '9')
+		{
+			write(1, "Error\n", 6);
+			exit(1);
+		}
 	}
 	while (*str >= '0' && *str <= '9')
 	{
@@ -31,7 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	if (*str != '\0' && *str != ' ' && *str != '\t')
 	{
-		write(2, "Error\n", 6);
+		write(1, "Error\n", 6);
 		exit(1);
 	}
 	number *= sign;
@@ -94,8 +99,9 @@ int	number_count(int ac, char **a)
 			}
 			if (a[i][j] == '-')
 				j++;
-			else if (a[i][j] < '0' && a[i][j] != ' ' && a[i][j] != '\t'
-			|| a[i][j] > '9')
+			else if (a[i][j] < '0' && a[i][j] != ' ' && a[i][j] != '\t')
+				return (-1);
+			else if (a[i][j] > '9')
 				return (-1);
 			else
 				j++;
@@ -103,7 +109,7 @@ int	number_count(int ac, char **a)
 	}
 	if (found_number == 0)
 	{
-		write(2, "Error\n", 6);
+		write(1, "Error\n", 6);
 		exit(1);
 	}
 	return (count);
@@ -116,7 +122,7 @@ void	fill_stack(int ac, char **av, t_data *stack_a, t_data *stack_b)
 	size = number_count(ac, av);
 	if (size == -1)
 	{
-		write(2, "Error\n", 6);
+		write(1, "Error\n", 6);
 		exit(1);
 	}
 	stack_a->nums = (int *)malloc(sizeof(int) * size);
@@ -148,6 +154,6 @@ int	check_duplicates_and_order(t_data *stk)
 		}
 	}
 	if (check_duplicate == 1)
-		write(2, "Error\n", 6);
+		write(1, "Error\n", 6);
 	return (check_order + check_duplicate);
 }

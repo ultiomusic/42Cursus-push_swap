@@ -6,7 +6,7 @@
 /*   By: beeligul <beeligul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:13:00 by beeligul          #+#    #+#             */
-/*   Updated: 2023/08/23 20:13:01 by beeligul         ###   ########.fr       */
+/*   Updated: 2023/08/23 22:09:31 by beeligul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		check_duplicates_and_order(t_data *stk);
 int		number_count(int ac, char **a);
 void	ft_split(char **argv, t_data *stack_a, int i);
 int		ft_atoi(const char *str);
+int		empty_check(int ac, char **av);
 
 void	sort_three_list(t_data *a);
 void	sort_four_list(t_data *stack_a, t_data *stack_b);
