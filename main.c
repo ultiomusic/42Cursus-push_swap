@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beeligul <beeligul@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/23 20:03:35 by beeligul          #+#    #+#             */
+/*   Updated: 2023/08/23 20:37:02 by beeligul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	index_sort(int *sort, t_data *stack_a)
@@ -44,7 +56,7 @@ void	indexing(t_data *stack_a)
 			{
 				stack_a->nums[i] = j;
 				break ;
-			}	
+			}
 		}
 	}
 	free(sort);
@@ -102,10 +114,25 @@ void	sort(t_data *stack_a, t_data *stack_b)
 
 int	main(int ac, char **av)
 {
+	int		empty_arg;
+	int		i;
 	t_data	stack_a;
 	t_data	stack_b;
 
-	if (ac < 2)
+	empty_arg = 1;
+	if (ac >= 2)
+	{
+		i = 1;
+		while (i < ac && empty_arg)
+		{
+			if (av[i][0] != '\0')
+			{
+				empty_arg = 0;
+			}
+			i++;
+		}
+	}
+	if (ac < 2 || empty_arg)
 		return (1);
 	fill_stack(ac, av, &stack_a, &stack_b);
 	if (check_duplicates_and_order(&stack_a) == 0)

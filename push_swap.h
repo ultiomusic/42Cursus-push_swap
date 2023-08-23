@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beeligul <beeligul@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/23 20:13:00 by beeligul          #+#    #+#             */
+/*   Updated: 2023/08/23 20:13:01 by beeligul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -10,7 +22,6 @@ typedef struct s_data
 	int	size;
 }	t_data;
 
-//Operations
 void	sa(t_data *stack_a);
 void	sb(t_data *stack_b);
 void	ss(t_data *stack_a, t_data *stack_b);
