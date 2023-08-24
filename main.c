@@ -112,38 +112,19 @@ void	sort(t_data *stack_a, t_data *stack_b)
 	}
 }
 
-int	main(int ac, char **av)
-{
-	int		empty_arg;
-	int		i;
-	t_data	stack_a;
-	t_data	stack_b;
-
-	empty_arg = 1;
-	if (ac >= 2)
+int main(int ac, char **av)
+ {
+    t_data stack_a;
+	t_data stack_b;
+    int	result;
+	
+	result = check_and_process_input(ac, av, &stack_a, &stack_b);
+    if (result)
 	{
-		i = 1;
-		while (i < ac && empty_arg)
-		{
-			if (av[i][0] != '\0')
-			{
-				empty_arg = 0;
-			}
-			i++;
-		}
-	}
-	if (ac < 2 || empty_arg)
-		return (1);
-	fill_stack(ac, av, &stack_a, &stack_b);
-	if (check_duplicates_and_order(&stack_a) == 0)
-	{
-		indexing(&stack_a);
-		if ((stack_a.size > 1) && (stack_a.size <= 5))
-			sort_small_stack(&stack_a, &stack_b);
-		else
-			sort(&stack_a, &stack_b);
-	}
-	free(stack_a.nums);
-	free(stack_b.nums);
-	return (0);
+        free(stack_a.nums);
+        free(stack_b.nums);
+        return (0);
+    } 
+	else 
+        return (1);
 }
