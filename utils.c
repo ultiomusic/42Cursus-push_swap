@@ -12,40 +12,32 @@
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str) 
 {
-	int			sign;
-	long int	number;
+    int sign;
+    long int number;
 
-	sign = 1;
-	number = 0;
-	if (*str == '-')
-	{
-		sign *= -1;
-		str++;
-		if (*str < '0' || *str > '9')
-		{
-			write(1, "Error\n", 6);
-			exit(1);
-		}
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		number = *str - '0' + (number * 10);
-		str++;
-	}
-	if (*str != '\0' && *str != ' ' && *str != '\t')
-	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
-	number *= sign;
-	if (number > 2147483647 || number < -2147483648)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-	return (number);
+    sign = 1;
+    number = 0;
+    if (*str == '-') 
+    {
+        sign *= -1;
+        str++;
+        if (*str < '0' || *str > '9')
+            handle_error();
+    }
+    while (convert_digit(*str) != -1) 
+    {
+        number = convert_digit(*str) + (number * 10);
+        str++;
+    }
+    
+    if (*str != '\0' && *str != ' ' && *str != '\t') 
+        handle_error();
+    number *= sign;
+    if (number > 2147483647 || number < -2147483648) 
+        handle_error();
+    return (number);
 }
 
 void	ft_split(char **argv, t_data *stack_a, int i)
@@ -77,42 +69,31 @@ void	ft_split(char **argv, t_data *stack_a, int i)
 		stack_a->nums[i] = ft_atoi(numbers[i]);
 }
 
-int	number_count(int ac, char **a)
+int number_count(int ac, char **a)
 {
-	int	i;
-	int	j;
+    int	i;
 	int	count;
 	int	found_number;
 
-	found_number = 0;
 	i = 0;
 	count = 0;
-	while (++i < ac)
+	found_number = 0;
+    
+    while (++i < ac)
 	{
-		j = 0;
-		while (a[i][j] != '\0')
+        count += count_numbers_in_string(a[i]);
+        if (count_numbers_in_string(a[i]) != 0)
 		{
-			if (a[i][j] != ' ' && (a[i][j + 1] == ' ' || a[i][j + 1] == '\0'))
-			{
-				count++;
-				found_number = 1;
-			}
-			if (a[i][j] == '-')
-				j++;
-			else if (a[i][j] < '0' && a[i][j] != ' ' && a[i][j] != '\t')
-				return (-1);
-			else if (a[i][j] > '9')
-				return (-1);
-			else
-				j++;
-		}
-	}
-	if (found_number == 0)
+            found_number = 1;
+        }
+    }
+    if (found_number == 0) 
 	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
-	return (count);
+        write(2, "Error\n", 6);
+        exit(1);
+    }
+    
+    return (count);
 }
 
 void	fill_stack(int ac, char **av, t_data *stack_a, t_data *stack_b)
@@ -122,7 +103,7 @@ void	fill_stack(int ac, char **av, t_data *stack_a, t_data *stack_b)
 	size = number_count(ac, av);
 	if (size == -1)
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	stack_a->nums = (int *)malloc(sizeof(int) * size);
@@ -154,6 +135,9 @@ int	check_duplicates_and_order(t_data *stk)
 		}
 	}
 	if (check_duplicate == 1)
-		write(1, "Error\n", 6);
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	return (check_order + check_duplicate);
 }
