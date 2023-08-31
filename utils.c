@@ -6,38 +6,37 @@
 /*   By: beeligul <beeligul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:04:04 by beeligul          #+#    #+#             */
-/*   Updated: 2023/08/23 22:23:01 by beeligul         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:52:03 by beeligul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_atoi(const char *str) 
+int	ft_atoi(const char *str)
 {
-    int sign;
-    long int number;
+	long int	number;
+	int			sign;
 
-    sign = 1;
-    number = 0;
-    if (*str == '-') 
-    {
-        sign *= -1;
-        str++;
-        if (*str < '0' || *str > '9')
-            handle_error();
-    }
-    while (convert_digit(*str) != -1) 
-    {
-        number = convert_digit(*str) + (number * 10);
-        str++;
-    }
-    
-    if (*str != '\0' && *str != ' ' && *str != '\t') 
-        handle_error();
-    number *= sign;
-    if (number > 2147483647 || number < -2147483648) 
-        handle_error();
-    return (number);
+	sign = 1;
+	number = 0;
+	if (*str == '-') 
+	{
+		sign *= -1;
+		str++;
+		if (*str < '0' || *str > '9')
+			handle_error();
+	}
+	while (convert_digit(*str) != -1) 
+	{
+		number = convert_digit(*str) + (number * 10);
+		str++;
+	}
+	if (*str != '\0' && *str != ' ' && *str != '\t') 
+		handle_error();
+	number *= sign;
+	if (number > 2147483647 || number < -2147483648) 
+		handle_error();
+	return (number);
 }
 
 void	ft_split(char **argv, t_data *stack_a, int i)
@@ -69,31 +68,29 @@ void	ft_split(char **argv, t_data *stack_a, int i)
 		stack_a->nums[i] = ft_atoi(numbers[i]);
 }
 
-int number_count(int ac, char **a)
+int	number_count(int ac, char **a)
 {
-    int	i;
+	int	i;
 	int	count;
 	int	found_number;
 
 	i = 0;
 	count = 0;
 	found_number = 0;
-    
-    while (++i < ac)
+	while (++i < ac)
 	{
-        count += count_numbers_in_string(a[i]);
-        if (count_numbers_in_string(a[i]) != 0)
+		count += count_numbers_in_string(a[i]);
+		if (count_numbers_in_string(a[i]) != 0)
 		{
-            found_number = 1;
-        }
-    }
-    if (found_number == 0) 
+			found_number = 1;
+		}
+	}
+	if (found_number == 0) 
 	{
-        write(2, "Error\n", 6);
-        exit(1);
-    }
-    
-    return (count);
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+	return (count);
 }
 
 void	fill_stack(int ac, char **av, t_data *stack_a, t_data *stack_b)

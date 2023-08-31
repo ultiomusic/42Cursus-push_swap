@@ -6,7 +6,7 @@
 /*   By: beeligul <beeligul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:03:35 by beeligul          #+#    #+#             */
-/*   Updated: 2023/08/23 22:12:18 by beeligul         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:52:39 by beeligul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	sort(t_data *stack_a, t_data *stack_b)
 			if (!((current >> i) & 1))
 				pb(stack_a, stack_b);
 			else
-				rra(stack_a);
+				ra(stack_a);
 		}
 		num--;
 		i++;
@@ -112,19 +112,19 @@ void	sort(t_data *stack_a, t_data *stack_b)
 	}
 }
 
-int main(int ac, char **av)
- {
-    t_data stack_a;
-	t_data stack_b;
-    int	result;
-	
-	result = check_and_process_input(ac, av, &stack_a, &stack_b);
-    if (result)
+int	main(int ac, char **av)
+{
+	t_data	stack_a;
+	t_data	stack_b;
+	int		result;
+
+	result = check_pcess_input(ac, av, &stack_a, &stack_b);
+	if (result)
 	{
-        free(stack_a.nums);
-        free(stack_b.nums);
-        return (0);
-    } 
+		free(stack_a.nums);
+		free(stack_b.nums);
+		return (0);
+	}
 	else 
-        return (1);
+		return (1);
 }
