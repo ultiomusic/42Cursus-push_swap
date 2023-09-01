@@ -100,7 +100,7 @@ void	sort(t_data *stack_a, t_data *stack_b)
 		while (size--)
 		{
 			current = stack_a->nums[stack_a->size - 1];
-			if (!((current >> i) & 1))
+			if (((current >> i) & 1) == 0)
 				pb(stack_a, stack_b);
 			else
 				ra(stack_a);
