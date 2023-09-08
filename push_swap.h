@@ -44,6 +44,7 @@ int		has_empty_argument(int ac, char **av);
 int		count_numbers_in_string(char *str);
 int		convert_digit(char c);
 void	handle_error(void);
+int		check_argument(char *arg);
 
 void	sort_three_list(t_data *a);
 void	sort_four_list(t_data *stack_a, t_data *stack_b);

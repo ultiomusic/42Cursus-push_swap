@@ -26,10 +26,36 @@ int	has_empty_argument(int ac, char **av)
 	return (0);
 }
 
+int	check_argument(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		if (!(arg[i] == '-' && i == 0) && !(arg[i] >= '0' && arg[i] <= '9'))
+		{
+			handle_error();
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_pcess_input(int ac, char **av, t_data *stack_a, t_data *stack_b)
 {
+	int	i;
+
 	if (ac < 2 || has_empty_argument(ac, av))
 		return (0);
+	i = 1;
+	while (i < ac)
+	{
+		if (!check_argument(av[i]))
+			return (0);
+		i++;
+	}
 	fill_stack(ac, av, stack_a, stack_b);
 	if (check_duplicates_and_order(stack_a) == 0)
 	{
@@ -65,17 +91,4 @@ int	count_numbers_in_string(char *s)
 		}
 	}
 	return (count);
-}
-
-int	convert_digit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (c - '0');
-	return (-1);
-}
-
-void	handle_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
 }
