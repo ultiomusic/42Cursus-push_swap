@@ -26,28 +26,27 @@ int	has_empty_argument(int ac, char **av)
 	return (0);
 }
 
-int check_argument(char *arg)
+int	check_argument(char *a)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (arg[0] == '\0')
-    {
-        handle_error();
-        return (0);
-    }
-    while (arg[i])
-    {
-        if (!(arg[i] == '-') && !(arg[i] >= '0' && arg[i] <= '9') && arg[i] != ' ')
-        {
-            handle_error();
-            return (0);
-        }
-        i++;
-    }
-    return (1);
+	i = 0;
+	if (a[0] == '\0')
+	{
+		handle_error();
+		return (0);
+	}
+	while (a[i])
+	{
+		if (!(a[i] == '-') && !(a[i] >= '0' && a[i] <= '9') && a[i] != ' ')
+		{
+			handle_error();
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
-
 
 int	check_pcess_input(int ac, char **av, t_data *stack_a, t_data *stack_b)
 {
